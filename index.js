@@ -4,9 +4,11 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 const PORT = process.env.PORT || 3000
+const path = require('path')
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
   res.redirect(`/${uuidV4()}`)
